@@ -72,3 +72,19 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+*.xml
+Plugins/Developer/RiderLink/Source/RiderLogging/Private/RiderLogging.cpp
+*.cpp
+*.hpp
+*.h
+Plugins/Developer/RiderLink/Source/RD/thirdparty/variant/CMakeLists.txt
+*.rst
+*.svg
+*.md
+*.in
+*.txt
+*.cmake
+Plugins/Developer/RiderLink/Source/RD/thirdparty/spdlog/LICENSE
+Plugins/Developer/RiderLink/Intermediate/Build/Win64/UnrealEditor/Development/RiderGameControl/Default.rc2.res
+*.exp
+*.res
