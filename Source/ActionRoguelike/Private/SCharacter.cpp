@@ -23,9 +23,11 @@ ASCharacter::ASCharacter()
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComponent"));
 	CameraComponent->SetupAttachment(SpringArmComponent);
 
-	bUseControllerRotationYaw = false;
+	
 
 	GetCharacterMovement()->bOrientRotationToMovement = true;
+
+	bUseControllerRotationYaw = false;
 
 }
 
@@ -51,9 +53,25 @@ void ASCharacter::MoveRight(float value)
 	FRotator ControlRot = GetControlRotation();
 	ControlRot.Pitch = 0.0f;
 	ControlRot.Roll = 0.0f;
-	FVector RightVector= FRotationMatrix(ControlRot).GetScaleVector(EAxis::Y);
-	UE_LOG(LogTemp,Warning,TEXT("%f"),ControlRot.Yaw);
+	FVector RightVector= FRotationMatrix(ControlRot).GetScaledAxis(EAxis::Y);
+
+	
+	//UE_LOG(LogTemp,Warning,TEXT("%f"),value);
 	AddMovementInput(RightVector,value);
+}
+
+
+
+void ASCharacter::PrimaryAttack()
+{
+	FVector HandRLocation = GetMesh()->GetSocketLocation("Muzzle_01");
+	
+	FTransform SpawnMT = FTransform(GetControlRotation(),HandRLocation);
+	FActorSpawnParameters SpawnParams;
+	
+	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	
+	GetWorld()->SpawnActor<AActor>(ProjectileClass,SpawnMT,SpawnParams);
 }
 
 // Called every frame
@@ -73,6 +91,10 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 	PlayerInputComponent->BindAxis("Turn",this,&APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAxis("Lookup",this,&APawn::AddControllerPitchInput);
+
+	PlayerInputComponent->BindAction("PrimaryAttack",IE_Pressed,this,&ASCharacter::PrimaryAttack);
+	PlayerInputComponent->BindAction("Jump",IE_Pressed,this,&ACharacter::Jump);
+	
 	
 }
 
