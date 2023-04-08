@@ -18,6 +18,7 @@ ASExplosiveBarrel::ASExplosiveBarrel()
 
 	RadialForceComp = CreateDefaultSubobject<URadialForceComponent>(TEXT("RadialComp"));
 	RadialForceComp->SetupAttachment(RootComponent);
+	RadialForceComp->SetAutoActivate(false);
 	RadialForceComp->Radius = 750.0f;
 	RadialForceComp->ImpulseStrength = 3000.f;
 	RadialForceComp->bImpulseVelChange = true;

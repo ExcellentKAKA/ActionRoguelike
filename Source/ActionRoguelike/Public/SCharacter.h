@@ -15,8 +15,13 @@ class ACTIONROGUELIKE_API ASCharacter : public ACharacter
 
 protected:
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Attack")
 	TSubclassOf<AActor> ProjectileClass;
+
+	UPROPERTY(EditAnywhere, Category = "Attack")
+	UAnimMontage* AttackMontage;
+
+	FTimerHandle TimerHandle_PrimaryAttack;
 
 public:
 	// Sets default values for this character's properties
@@ -29,7 +34,8 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	class USpringArmComponent* SpringArmComponent;
 
-	
+	UPROPERTY(VisibleAnywhere)
+	class USInteractionComponent* InteractionComponent;
 
 
 	
@@ -43,6 +49,10 @@ protected:
 
 
 	void PrimaryAttack();
+
+	void PrimaryAttack_TimeElapsed();
+
+	void PrimaryInteract();
 
 public:	
 	// Called every frame

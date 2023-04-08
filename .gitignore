@@ -88,3 +88,10 @@ Plugins/Developer/RiderLink/Source/RD/thirdparty/spdlog/LICENSE
 Plugins/Developer/RiderLink/Intermediate/Build/Win64/UnrealEditor/Development/RiderGameControl/Default.rc2.res
 *.exp
 *.res
+Config/DefaultInput.ini
+*.ini
+*.json
+*.response
+*.pdb
+Plugins/Developer/RiderLink/Binaries/Win64/UnrealEditor-Win64-DebugGame.modules
+Config/DefaultInput.ini
